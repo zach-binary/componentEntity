@@ -20,7 +20,7 @@ Engine.Loop = function() {
 
 Engine.Start = function() {
   var canvas = document.createElement('canvas');
-  Engine.canvasContext = canvas.getContext('2d');  
+  Engine.canvasContext = canvas.getContext('2d');
   canvas.width = 512;
   canvas.height = 525;
   document.body.appendChild(canvas);
