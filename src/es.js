@@ -95,6 +95,38 @@
 
         return true;
       };
+
+      this.minimumTranslationVector = function(box) {
+        var left = box.x - (this.x + this.w);
+        var right = (box.x + box.w) - this.x;
+        var top = box.y - (this.y + this.h);
+        var bottom = (box.y + box.h) - this.y;
+
+        var mtd = {
+          x: 0,
+          y: 0
+        };
+
+        if (left > 0 || right < 0) return mtd;
+        if (top > 0 || bottom < 0) return mtd;
+
+        if (Math.abs(left) < right) 
+          mtd.x = left;
+        else 
+          mtd.x = right;
+
+        if (Math.abs(top) < bottom) 
+          mtd.y = top;
+        else
+          mtd.y = bottom;
+
+        if (Math.abs(mtd.x) < Math.abs(mtd.y))
+          mtd.y = 0;
+        else
+          mtd.x = 0;
+
+        return mtd;
+      };
     }
 
   };

@@ -38,21 +38,11 @@ define(['es'], function() {
       var i = solids.length;
       while(i--) {
         if (e.collision.bounds.intersects(solids[i].collision.bounds)) {
-          e.position.x = e.movement.lastPosition.x.valueOf();
-          e.position.y = e.movement.lastPosition.y.valueOf();
+          var mtd = e.collision.bounds.minimumTranslationVector(solids[i].collision.bounds);
+          e.position.x += mtd.x;
+          e.position.y += mtd.y;
         }
       }
-    }
-  };
-
-  es.systems.movement = {
-    components: ['position', 'movement'],
-
-    update: function(e) {
-      e.movement.lastPosition.x = e.position.x.valueOf();
-      e.movement.lastPosition.y = e.position.y.valueOf();
-      e.position.x += e.movement.x;
-      e.position.y += e.movement.y;
     }
   };
 
@@ -70,5 +60,16 @@ define(['es'], function() {
       e.movement.y = dy;
     }
   };
+
+  es.systems.movement = {
+    components: ['position', 'movement'],
+
+    update: function(e) {
+      e.position.x += e.movement.x;
+      e.position.y += e.movement.y;
+    }
+  };
+
+  
 
 });
