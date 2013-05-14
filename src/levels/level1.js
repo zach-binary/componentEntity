@@ -14,7 +14,8 @@ define({
   1: {
     name: 'hero',
     renderable: {
-      image: es.images.heroImg
+      image: es.images.heroImg,
+      alpha: 1.0
     },
     position: {
       x: 100,
@@ -32,12 +33,22 @@ define({
     collision: {
       bounds: new es.AABB(100, 100, 32, 32)
     },
-    player: {
+    stun: {
+      delay: 0,
+      recoverTime: 0
+    },
+    blink: {
+      interval: 80,
+      amount: 0
+    },
+    player: true,
+    playerControls: {
       up: 'W',
       left: 'A',
       down: 'S',
       right: 'D'
-    }
+    },
+    health: 20
   },
 
   2: {
@@ -69,6 +80,25 @@ define({
     solid: true,
     collision: {
       bounds: new es.AABB(31, 45, 450, 30)
+    }
+  },
+
+  6: {
+    name: 'monster',
+    position: {
+      x: 200,
+      y: 200
+    },
+    renderable: {
+      image: es.images.monster
+    },
+    collision: {
+      bounds: new es.AABB(200, 200, 32, 32)
+    },
+    damagePlayer: {
+      damage: 4,
+      bounceBack: 30, // pixels
+      stun: 100
     }
   }
 

@@ -39,7 +39,13 @@
     },
 
     loop: function() {
+      // es.canvasContext.clearRect(0, 0, es.canvas.width, es.canvas.height);
+
       if (!this.currentState) return;
+
+      var now = Date.now();
+      var delta = now - es.lastTime;
+      es.deltaTime = delta;
 
       var entities = this.currentState.entities;
 
@@ -51,6 +57,8 @@
         systemEntities
           .forEach(system.update);
       }
+
+      es.lastTime = now;
     },
 
     getEntitiesWith: function(components) {
