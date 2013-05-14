@@ -39,7 +39,7 @@
     },
 
     loop: function() {
-      // es.canvasContext.clearRect(0, 0, es.canvas.width, es.canvas.height);
+      es.canvasContext.clearRect(0, 0, es.canvas.width, es.canvas.height);
 
       if (!this.currentState) return;
 

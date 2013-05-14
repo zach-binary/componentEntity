@@ -7,9 +7,10 @@ define(['es', 'resources', 'systems/renderable'], function() {
     loadLevel: function(level) {
       this.entities = [];
       require([level], function(level) {
-        for(var e in level) {
-          e = level[e];
-          this.entities.push(e);
+        var levelObj = new level().level;
+        for(var e in levelObj) {
+          e = levelObj[e];
+          this.entities.push(e.valueOf());
         }
       }.bind(this));
     }

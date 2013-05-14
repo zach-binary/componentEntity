@@ -145,8 +145,8 @@ define(['es'], function() {
 
     update: function(e) {
       if (e.health < 0) {
-        var index = es.currentState.entities.indexOf(e);
-        es.currentState.entities.splice(index, 1);
+        // var index = es.currentState.entities.indexOf(e);
+        // es.currentState.entities.splice(index, 1);
         es.currentState.loadLevel(es.currentState.currentLevel);
       }
     }
