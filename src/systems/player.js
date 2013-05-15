@@ -4,7 +4,7 @@ define(['es'], function() {
     components: ['player', 'health'],
 
     update: function(e) {
-      if (e.health < 0) {
+      if (e.health <= 0) {
         es.currentState.loadLevel(es.currentState.currentLevel);
       }
     }

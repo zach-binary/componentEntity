@@ -20,18 +20,15 @@ define(['es'], function() {
     components: ['renderable', 'position'],
 
     update: function(e) {
-      if (e.renderable.alpha) {
-        es.canvasContext.globalAlpha = e.renderable.alpha;
+      es.canvasContext.globalAlpha = e.renderable.alpha;
+
+      if (e.renderable.source) { 
+        var source = e.renderable.source;
+        es.canvasContext.drawImage(e.renderable.image, source.x, source.y, source.w, source.h, e.position.x, e.position.y, source.w, source.h);
       }
       else {
-        es.canvasContext.globalAlpha = 1.0;
-      }
-      var source = e.renderable.source;
-      var image = e.renderable.image;
-      if (source) 
-        es.canvasContext.drawImage(e.renderable.image, source.x, source.y, source.w, source.h, e.position.x, e.position.y, source.w, source.h);
-      else
         es.canvasContext.drawImage(e.renderable.image, e.position.x, e.position.y);
+      }
     }
   };
 
@@ -46,6 +43,16 @@ define(['es'], function() {
         es.canvasContext.strokeStyle = '#bb1111';
         es.canvasContext.stroke();
       }
+    }
+  };
+
+  es.systems.displayHealth = {
+    components: ['player', 'health'],
+
+    update: function(e) {
+      es.canvasContext.font="20px Verdana";
+      es.canvasContext.fillStyle = '#ffffff';
+      es.canvasContext.fillText('Health: ' + e.health, 10, 30);
     }
   };
 

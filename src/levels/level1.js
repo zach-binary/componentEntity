@@ -6,7 +6,18 @@ define(function() {
       0: {
         name: 'background',
         renderable: {
-          image: es.images.level1bg
+          image: es.images.level1bg,
+          alpha: 1.0,
+          scale: {
+            x: 2,
+            y: 2
+          },
+          source: {
+            x: 0,
+            y: 0,
+            w: es.images.level1bg.width,
+            h: es.images.level1bg.height
+          }
         },
         position: {
           x: 0,
@@ -19,6 +30,10 @@ define(function() {
         renderable: {
           image: es.sprites.heroSprite.image,
           alpha: 1.0,
+          scale: {
+            x: 2,
+            y: 2
+          },
           source: es.newAnimation(es.sprites.heroSprite, [13])[0]
         },
         animate: {
@@ -104,7 +119,18 @@ define(function() {
           y: 200
         },
         renderable: {
-          image: es.images.monster
+          image: es.images.monster,
+          alpha: 1.0,
+          scale: {
+            x: 2,
+            y: 2
+          },
+          source: {
+            x: 0,
+            y: 0,
+            w: es.images.monster.width,
+            h: es.images.monster.height
+          }
         },
         collision: {
           bounds: new es.AABB(200, 200, 32, 32)
@@ -112,7 +138,7 @@ define(function() {
         damagePlayer: {
           damage: 4,
           bounceBack: 30, // pixels
-          stun: 100
+          stun: 150
         }
       }
     };
