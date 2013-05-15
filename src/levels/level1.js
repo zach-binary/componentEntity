@@ -119,21 +119,23 @@ define(function() {
           y: 200
         },
         renderable: {
-          image: es.images.monster,
+          image: es.sprites.monsterSprite.image,
           alpha: 1.0,
           scale: {
-            x: 1,
-            y: 1
+            x: 1.5,
+            y: 1.5
           },
-          source: {
-            x: 0,
-            y: 0,
-            w: es.images.monster.width,
-            h: es.images.monster.height
-          }
+          source: es.newAnimation(es.sprites.monsterSprite, [1])[0]
+        },
+        animate: {
+          animation: es.newAnimation(es.sprites.monsterSprite, [0, 1, 2]),
+          interval: 1000 / 15,
+          elapsed: 0,
+          frame: {},
+          index: 0
         },
         collision: {
-          bounds: new es.AABB(200, 200, 32, 32)
+          bounds: new es.AABB(200, 200, 36, 48)
         },
         damagePlayer: {
           damage: 4,
