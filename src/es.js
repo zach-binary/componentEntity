@@ -8,16 +8,16 @@
     sprites: {},
     systems: {},
     states: {},
+    debug: {
+      showBoxes: false
+    },
 
     initCanvasGame: function(id, w, h, game) {
-      var canvas = document.createElement('canvas');
-      canvas.setAttribute('id', id);
+      var canvas = document.getElementById(id);
 
       var canvasContext = canvas.getContext('2d');
       canvas.width = w;
       canvas.height = h;
-
-      document.body.appendChild(canvas);
 
       this.canvas = canvas;
       this.canvasContext = canvasContext; 
@@ -102,8 +102,8 @@
       this.frames = [];
 
       this.image.onload = function() {
-        for(var x = 0; x < this.image.width; x += this.w) {
-          for (var y = 0; y < this.image.height; y += this.h) {
+        for (var y = 0; y < this.image.height; y += this.h) {
+          for(var x = 0; x < this.image.width; x += this.w) {
             this.frames.push({
               x: x,
               y: y,

@@ -1,4 +1,4 @@
-define(['es', 'resources', 'systems/renderable'], function() {
+define(['es', 'resources', 'systems/renderable', 'systems/collision', 'systems/player', 'systems/movement'], function() {
 
   es.states.gameplay = {
     entities: [],
@@ -16,7 +16,7 @@ define(['es', 'resources', 'systems/renderable'], function() {
     }
   };
 
-  es.initCanvasGame('#canvas', 512, 525, es.states.gameplay);
+  es.initCanvasGame('canvas', 512, 525, es.states.gameplay);
   es.states.gameplay.currentLevel = 'levels/level1';
   es.states.gameplay.loadLevel(es.states.gameplay.currentLevel);
 

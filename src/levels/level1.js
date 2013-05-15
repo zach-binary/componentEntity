@@ -18,11 +18,12 @@ define(function() {
         name: 'hero',
         renderable: {
           image: es.sprites.heroSprite.image,
-          alpha: 1.0
+          alpha: 1.0,
+          source: es.newAnimation(es.sprites.heroSprite, [13])[0]
         },
         animate: {
-          animation: es.newAnimation(es.sprites.heroSprite, [9, 10, 11, 12]), // blargh how do I reuse playerAnimations???
-          interval: 1000 / 30,
+          animation: es.newAnimation(es.sprites.heroSprite, [12, 13]), // blargh how do I reuse playerAnimations???
+          interval: 1000 / 15,
           elapsed: 0,
           frame: {},
           index: 0
@@ -55,10 +56,11 @@ define(function() {
           right: 'D'
         },
         playerAnimations: {
-          up: es.newAnimation(es.sprites.heroSprite, [1, 2, 3, 4]),
-          left: es.newAnimation(es.sprites.heroSprite, [5, 6, 7, 8]),
-          down: es.newAnimation(es.sprites.heroSprite, [9, 10, 11, 12]),
-          right: es.newAnimation(es.sprites.heroSprite, [13, 14, 15, 16])
+          up: es.newAnimation(es.sprites.heroSprite, [0, 1]),
+          left: es.newAnimation(es.sprites.heroSprite, [18, 19]),
+          down: es.newAnimation(es.sprites.heroSprite, [12, 13]),
+          right: es.newAnimation(es.sprites.heroSprite, [6, 7]),
+          idle: es.newAnimation(es.sprites.heroSprite, [13])
         },
         health: 20
       },
