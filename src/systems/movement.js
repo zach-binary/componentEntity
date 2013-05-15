@@ -48,4 +48,23 @@ define(['es'], function() {
     }
   };
 
+  es.systems.mouseMovement = {
+    components: ['mouseMovement', 'movement', 'position'],
+
+    update: function(e) {
+
+      var targetReached = Math.abs(Math.round(e.position.x) - e.mouseMovement.targetPosition.x) < 5 ||
+                          Math.abs(Math.round(e.position.y) - e.mouseMovement.targetPosition.y) < 5;
+
+      if(targetReached) {
+        e.movement.x = 0;
+        e.movement.y = 0;
+        e.mouseMovement.targetPosition = {
+          x: 0,
+          y: 0
+        };
+      }
+    }
+  };
+
 });

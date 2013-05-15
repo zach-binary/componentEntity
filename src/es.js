@@ -31,6 +31,12 @@
         delete this.input.keysDown[e.keyCode];
       }.bind(this));
 
+      canvas.addEventListener('click', function(e) {
+        es.input.mouse.left = true;
+        es.input.mouse.x = e.offsetX;
+        es.input.mouse.y = e.offsetY;
+      });
+
       setInterval(this.loop.bind(this), 60 / 1000);
     },
 
@@ -71,6 +77,7 @@
       }
 
       es.lastTime = now;
+      es.pollInput();
     },
 
     getEntitiesWith: function(components) {
@@ -83,8 +90,17 @@
       });
     },
 
+    pollInput: function() {
+      if (es.input.mouse.left) es.input.mouse.left = false;
+    },
+
     input: {
       keysDown: {},
+      mouse: {
+        x: 0,
+        y: 0,
+        left: false
+      },
 
       isDown: function(key) {
         if (typeof key === 'string') key = key.charCodeAt(0);

@@ -70,6 +70,12 @@ define(function() {
           down: 'S',
           right: 'D'
         },
+        mouseMovement: {
+          targetPosition: {
+            x: 0,
+            y: 0
+          }
+        },
         playerAnimations: {
           up: es.newAnimation(es.sprites.heroSprite, [0, 1]),
           left: es.newAnimation(es.sprites.heroSprite, [18, 19]),
@@ -110,39 +116,39 @@ define(function() {
         collision: {
           bounds: new es.AABB(31, 45, 450, 30)
         }
-      },
-
-      6: {
-        name: 'monster',
-        position: {
-          x: 200,
-          y: 200
-        },
-        renderable: {
-          image: es.sprites.monsterSprite.image,
-          alpha: 1.0,
-          scale: {
-            x: 1.5,
-            y: 1.5
-          },
-          source: es.newAnimation(es.sprites.monsterSprite, [1])[0]
-        },
-        animate: {
-          animation: es.newAnimation(es.sprites.monsterSprite, [0, 1, 2]),
-          interval: 1000 / 15,
-          elapsed: 0,
-          frame: {},
-          index: 0
-        },
-        collision: {
-          bounds: new es.AABB(200, 200, 36, 48)
-        },
-        damagePlayer: {
-          damage: 4,
-          bounceBack: 30, // pixels
-          stun: 150
-        }
       }
+
+      // 6: {
+      //   name: 'monster',
+      //   position: {
+      //     x: 200,
+      //     y: 200
+      //   },
+      //   renderable: {
+      //     image: es.sprites.monsterSprite.image,
+      //     alpha: 1.0,
+      //     scale: {
+      //       x: 1.5,
+      //       y: 1.5
+      //     },
+      //     source: es.newAnimation(es.sprites.monsterSprite, [1])[0]
+      //   },
+      //   animate: {
+      //     animation: es.newAnimation(es.sprites.monsterSprite, [0, 1, 2]),
+      //     interval: 1000 / 15,
+      //     elapsed: 0,
+      //     frame: {},
+      //     index: 0
+      //   },
+      //   collision: {
+      //     bounds: new es.AABB(200, 200, 36, 48)
+      //   },
+      //   damagePlayer: {
+      //     damage: 4,
+      //     bounceBack: 30, // pixels
+      //     stun: 150
+      //   }
+      // }
     };
   }
 
