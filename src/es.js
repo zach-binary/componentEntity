@@ -5,6 +5,7 @@
     canvasContext: null,
     currentState: null,
     images: {},
+    sprites: {},
     systems: {},
     states: {},
 
@@ -36,6 +37,17 @@
     loadImage: function(url, name) {
       this.images[name] = new Image();
       this.images[name].src = url;
+    },
+
+    loadSprite: function(url, name, w, h) {
+      this.sprites[name] = new es.Sprite(url, w, h);
+    },
+
+    newAnimation: function(sprite, frames) {
+      var animation = [];
+      var i = frames.length;
+      while(i--) animation.push(sprite.frames[frames[i]]);
+      return animation;
     },
 
     loop: function() {
@@ -79,6 +91,28 @@
 
         return this.keysDown.hasOwnProperty(key);
       }
+    },
+
+    Sprite: function(url, w, h) {
+      this.image = new Image();
+      this.image.src = url;
+      this.w = w;
+      this.h = h;
+
+      this.frames = [];
+
+      this.image.onload = function() {
+        for(var x = 0; x < this.image.width; x += this.w) {
+          for (var y = 0; y < this.image.height; y += this.h) {
+            this.frames.push({
+              x: x,
+              y: y,
+              w: w,
+              h: h
+            });
+          }
+        }
+      }.bind(this);
     },
 
     AABB: function (x, y, w, h) {

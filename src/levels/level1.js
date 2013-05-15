@@ -1,7 +1,7 @@
 define(function() {
 
   function Level() {
-    
+
     this.level = {
       0: {
         name: 'background',
@@ -17,8 +17,15 @@ define(function() {
       1: {
         name: 'hero',
         renderable: {
-          image: es.images.heroImg,
+          image: es.sprites.heroSprite.image,
           alpha: 1.0
+        },
+        animate: {
+          animation: es.newAnimation(es.sprites.heroSprite, [9, 10, 11, 12]), // blargh how do I reuse playerAnimations???
+          interval: 1000 / 30,
+          elapsed: 0,
+          frame: {},
+          index: 0
         },
         position: {
           x: 100,
@@ -46,6 +53,12 @@ define(function() {
           left: 'A',
           down: 'S',
           right: 'D'
+        },
+        playerAnimations: {
+          up: es.newAnimation(es.sprites.heroSprite, [1, 2, 3, 4]),
+          left: es.newAnimation(es.sprites.heroSprite, [5, 6, 7, 8]),
+          down: es.newAnimation(es.sprites.heroSprite, [9, 10, 11, 12]),
+          right: es.newAnimation(es.sprites.heroSprite, [13, 14, 15, 16])
         },
         health: 20
       },

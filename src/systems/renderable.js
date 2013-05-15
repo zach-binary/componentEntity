@@ -14,6 +14,23 @@ define(['es'], function() {
     }
   };
 
+  es.systems.animate = {
+    components: ['animate'],
+
+    update: function(e) {
+      if (e.animate.animation === null) return;
+
+      e.animate.elapsed += es.deltaTime;
+
+      if (e.animate.index > e.animate.animation.length - 1) {
+        e.animate.index = 0;
+      }
+      if (e.animate.elapsed > e.animate.interval) {
+        e.animate.frame = e.animate.animation[e.animate.index++];
+      }
+    }
+  };
+
   es.systems.collision = {
     components: ['position', 'collision'],
 
