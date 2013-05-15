@@ -9,8 +9,8 @@ define(function() {
           image: es.images.level1bg,
           alpha: 1.0,
           scale: {
-            x: 2,
-            y: 2
+            x: 1,
+            y: 1
           },
           source: {
             x: 0,
@@ -31,8 +31,8 @@ define(function() {
           image: es.sprites.heroSprite.image,
           alpha: 1.0,
           scale: {
-            x: 2,
-            y: 2
+            x: 1.5,
+            y: 1.5
           },
           source: es.newAnimation(es.sprites.heroSprite, [13])[0]
         },
@@ -53,7 +53,7 @@ define(function() {
           speed: 1
         },
         collision: {
-          bounds: new es.AABB(100, 100, 32, 32)
+          bounds: new es.AABB(100, 100, 36, 48)
         },
         stun: {
           delay: 0,
@@ -122,8 +122,8 @@ define(function() {
           image: es.images.monster,
           alpha: 1.0,
           scale: {
-            x: 2,
-            y: 2
+            x: 1,
+            y: 1
           },
           source: {
             x: 0,

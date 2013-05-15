@@ -22,9 +22,11 @@ define(['es'], function() {
     update: function(e) {
       es.canvasContext.globalAlpha = e.renderable.alpha;
 
+      if (!e.renderable.scale) e.renderable.scale = {x: 1, y: 1};
+
       if (e.renderable.source) { 
         var source = e.renderable.source;
-        es.canvasContext.drawImage(e.renderable.image, source.x, source.y, source.w, source.h, e.position.x, e.position.y, source.w, source.h);
+        es.canvasContext.drawImage(e.renderable.image, source.x, source.y, source.w, source.h, e.position.x, e.position.y, source.w * e.renderable.scale.x, source.h * e.renderable.scale.y);
       }
       else {
         es.canvasContext.drawImage(e.renderable.image, e.position.x, e.position.y);
