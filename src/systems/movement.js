@@ -53,8 +53,8 @@ define(['es'], function() {
 
     update: function(e) {
 
-      var targetReached = Math.abs(Math.round(e.position.x) - e.mouseMovement.targetPosition.x) < 5 ||
-                          Math.abs(Math.round(e.position.y) - e.mouseMovement.targetPosition.y) < 5;
+      var targetReached = Math.abs(e.position.x - e.mouseMovement.targetPosition.x) < 2 &&
+                          Math.abs(e.position.y - e.mouseMovement.targetPosition.y) < 2;
 
       if(targetReached) {
         e.movement.x = 0;

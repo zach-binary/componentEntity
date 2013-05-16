@@ -34,7 +34,11 @@ define(function() {
             x: 1.5,
             y: 1.5
           },
-          source: es.newAnimation(es.sprites.heroSprite, [13])[0]
+          source: es.newAnimation(es.sprites.heroSprite, [13])[0],
+          rotation: 0,
+          origin: {
+            x: 12, y: 16
+          }
         },
         animate: {
           animation: es.newAnimation(es.sprites.heroSprite, [12, 13]), // blargh how do I reuse playerAnimations???
@@ -53,7 +57,7 @@ define(function() {
           speed: 1
         },
         collision: {
-          bounds: new es.AABB(100, 100, 36, 48)
+          bounds: new es.AABB(100, 100, 30, 40)
         },
         stun: {
           delay: 0,
@@ -116,39 +120,40 @@ define(function() {
         collision: {
           bounds: new es.AABB(31, 45, 450, 30)
         }
-      }
+      },
 
-      // 6: {
-      //   name: 'monster',
-      //   position: {
-      //     x: 200,
-      //     y: 200
-      //   },
-      //   renderable: {
-      //     image: es.sprites.monsterSprite.image,
-      //     alpha: 1.0,
-      //     scale: {
-      //       x: 1.5,
-      //       y: 1.5
-      //     },
-      //     source: es.newAnimation(es.sprites.monsterSprite, [1])[0]
-      //   },
-      //   animate: {
-      //     animation: es.newAnimation(es.sprites.monsterSprite, [0, 1, 2]),
-      //     interval: 1000 / 15,
-      //     elapsed: 0,
-      //     frame: {},
-      //     index: 0
-      //   },
-      //   collision: {
-      //     bounds: new es.AABB(200, 200, 36, 48)
-      //   },
-      //   damagePlayer: {
-      //     damage: 4,
-      //     bounceBack: 30, // pixels
-      //     stun: 150
-      //   }
-      // }
+      6: {
+        name: 'monster',
+        position: {
+          x: 200,
+          y: 200
+        },
+        renderable: {
+          image: es.sprites.monsterSprite.image,
+          alpha: 1.0,
+          scale: {
+            x: 1.5,
+            y: 1.5
+          },
+          source: es.newAnimation(es.sprites.monsterSprite, [1])[0]
+        },
+        animate: {
+          animation: es.newAnimation(es.sprites.monsterSprite, [0, 1, 2]),
+          interval: 1000 / 15,
+          elapsed: 0,
+          frame: {},
+          index: 0
+        },
+        collision: {
+          bounds: new es.AABB(200, 200, 36, 48)
+        },
+        damagePlayer: {
+          damage: 4,
+          bounceBack: 30, // pixels
+          stun: 150
+        },
+        enemyHealth: 10
+      }
     };
   }
 

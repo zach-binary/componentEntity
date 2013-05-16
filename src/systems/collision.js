@@ -10,6 +10,18 @@ define(['es'], function() {
     }
   };
 
+  es.systems.collisionOffset = {
+    components: ['collision', 'renderable'],
+
+    update: function(e) {
+      if (!e.renderable.origin) return;
+
+      var bounds = e.collision.bounds;
+      bounds.x -= e.renderable.origin.x;
+      bounds.y -= e.renderable.origin.y;
+    }
+  };
+
   es.systems.solidCollision = {
     components: ['collision', 'movement'],
 

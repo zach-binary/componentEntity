@@ -7,6 +7,7 @@
     images: {},
     sprites: {},
     systems: {},
+    factories: {},
     states: {},
     debug: {
       showBoxes: false
@@ -33,6 +34,13 @@
 
       canvas.addEventListener('click', function(e) {
         es.input.mouse.left = true;
+        es.input.mouse.x = e.offsetX;
+        es.input.mouse.y = e.offsetY;
+      });
+
+      canvas.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        es.input.mouse.right = true;
         es.input.mouse.x = e.offsetX;
         es.input.mouse.y = e.offsetY;
       });
@@ -90,8 +98,20 @@
       });
     },
 
+    hit: function(x, y) {
+      var collidables = this.getEntitiesWith(['collision']);
+
+      var i = collidables.length;
+      while(i--) {
+        if (collidables[i].collision.bounds.contains(x, y)) return collidables[i];
+      }
+
+      return false;
+    },
+
     pollInput: function() {
-      if (es.input.mouse.left) es.input.mouse.left = false;
+      if (es.input.mouse.left) es.input.mouse.left = false; 
+      if (es.input.mouse.right) es.input.mouse.right = false;
     },
 
     input: {
@@ -99,7 +119,8 @@
       mouse: {
         x: 0,
         y: 0,
-        left: false
+        left: false,
+        right: false
       },
 
       isDown: function(key) {
@@ -142,6 +163,13 @@
           x: this.x + this.w / 2,
           y: this.y + this.h / 2
         };
+      };
+
+      this.contains = function(x, y) {
+        if (x < this.x || x > this.x + this.w) return false;
+        if (y < this.y || y > this.y + this.h) return false;
+
+        return true;
       };
 
       this.intersects = function(box) {

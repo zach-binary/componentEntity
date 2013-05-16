@@ -1,4 +1,4 @@
-define(['es', 'resources', 'systems/renderable', 'systems/collision', 'systems/player', 'systems/movement'], function() {
+define(['es', 'resources', 'systems/renderable', 'systems/collision', 'systems/player', 'systems/movement', 'systems/projectiles'], function() {
 
   es.states.gameplay = {
     entities: [],

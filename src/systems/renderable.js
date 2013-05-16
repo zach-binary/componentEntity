@@ -20,17 +20,27 @@ define(['es'], function() {
     components: ['renderable', 'position'],
 
     update: function(e) {
+      es.canvasContext.save();
+
       es.canvasContext.globalAlpha = e.renderable.alpha;
 
-      if (!e.renderable.scale) e.renderable.scale = {x: 1, y: 1};
+      es.canvasContext.translate(e.position.x, e.position.y);
+      if (e.renderable.rotation) es.canvasContext.rotate(e.renderable.rotation);
+      if (e.renderable.scale) es.canvasContext.scale(e.renderable.scale.x, e.renderable.scale.y);
+
+      var origin = e.renderable.origin;
+
+      if (!e.renderable.origin) origin = {x: 0, y: 0};
 
       if (e.renderable.source) { 
         var source = e.renderable.source;
-        es.canvasContext.drawImage(e.renderable.image, source.x, source.y, source.w, source.h, e.position.x, e.position.y, source.w * e.renderable.scale.x, source.h * e.renderable.scale.y);
+        es.canvasContext.drawImage(e.renderable.image, source.x, source.y, source.w, source.h, -origin.x, -origin.y, source.w, source.h);
       }
       else {
-        es.canvasContext.drawImage(e.renderable.image, e.position.x, e.position.y);
+        es.canvasContext.drawImage(e.renderable.image, -origin.x, -origin.y);
       }
+
+      es.canvasContext.restore();
     }
   };
 
@@ -43,6 +53,19 @@ define(['es'], function() {
         es.canvasContext.beginPath();
         es.canvasContext.rect(bounds.x, bounds.y, bounds.w, bounds.h);
         es.canvasContext.strokeStyle = '#bb1111';
+        es.canvasContext.stroke();
+      }
+    }
+  };
+
+  es.systems.debugMouseMovement = {
+    components: ['mouseMovement'],
+
+    update: function(e) {
+      if (es.debug.showBoxes) {
+        es.canvasContext.beginPath();
+        es.canvasContext.rect(e.mouseMovement.targetPosition.x, e.mouseMovement.targetPosition.y, 5, 5);
+        es.canvasContext.strokeStyle = '#1111bb';
         es.canvasContext.stroke();
       }
     }
