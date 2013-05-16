@@ -135,7 +135,10 @@ define(function() {
             x: 1.5,
             y: 1.5
           },
-          source: es.newAnimation(es.sprites.monsterSprite, [1])[0]
+          source: es.newAnimation(es.sprites.monsterSprite, [1])[0],
+          origin: {
+            x: 12, y: 45
+          }
         },
         animate: {
           animation: es.newAnimation(es.sprites.monsterSprite, [0, 1, 2]),
@@ -145,7 +148,7 @@ define(function() {
           index: 0
         },
         collision: {
-          bounds: new es.AABB(200, 200, 36, 48)
+          bounds: new es.AABB(200, 200, 25, 25)
         },
         damagePlayer: {
           damage: 4,
