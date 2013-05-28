@@ -7,11 +7,13 @@
     images: {},
     sprites: {},
     systems: {},
+    endpoints: {},
     factories: {},
     states: {},
     debug: {
       showBoxes: false
     },
+    next_id: 0,
 
     initCanvasGame: function(id, w, h, game) {
       var canvas = document.getElementById(id);
@@ -84,29 +86,52 @@
           .forEach(system.update);
       }
 
+      es.physics.update();
+
       es.lastTime = now;
       es.pollInput();
     },
 
     getEntitiesWith: function(components) {
-      return this.currentState.entities.filter(function(e) {
-        var i = components.length;
-        while(i--) {
-          if (!e.hasOwnProperty(components[i])) return false;
-        }
-        return true;
-      });
-    },
-
-    hit: function(x, y) {
-      var collidables = this.getEntitiesWith(['collision']);
-
-      var i = collidables.length;
-      while(i--) {
-        if (collidables[i].collision.bounds.contains(x, y)) return collidables[i];
+      var e;
+      var entities = [];
+      for(e in this.currentState.entities) {
+        e = this.currentState.entities[e];
+        if (es.entityHasComponents(e, components)) entities.push(e);
       }
 
-      return false;
+      return entities;
+    },
+
+    entityHasComponents: function(e, components) {
+      var i = components.length;
+      while(i--) {
+        if (!e.hasOwnProperty(components[i])) { 
+          return false;
+        }
+      }
+
+      return true;
+    },
+
+    kill: function(e) {
+      if (es.entityHasComponents(e, ['collision'])) {
+        es.physics.removeBody(e.collision);
+      }
+      delete es.currentState.entities[e._id];
+    },
+
+    publish: function(event, e1, e2) {
+      var endpoint = es.endpoints[event];
+      if (!endpoint) return;
+
+      var i = endpoint.handlers.length;
+      while(i--) {
+        var handler = endpoint.handlers[i];
+
+        if (es.entityHasComponents(e1, handler.components)) 
+          handler.handle(e1, e2);
+      }
     },
 
     pollInput: function() {
@@ -216,4 +241,6 @@
     }
 
   };
+
+  require(['physics']);
 })();

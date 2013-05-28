@@ -25,8 +25,6 @@ define(['es', 'factories'], function() {
 
       if (es.input.mouse.left) {
 
-        if (es.hit(es.input.mouse.x, es.input.mouse.y)) return;
-
         e.mouseMovement.targetPosition.x = es.input.mouse.x ;
         e.mouseMovement.targetPosition.y = es.input.mouse.y ;
 
@@ -39,8 +37,7 @@ define(['es', 'factories'], function() {
 
         angle = Math.atan2(es.input.mouse.y - e.position.y, es.input.mouse.x - e.position.x);
 
-        var arrow = new es.factories.arrow(e.position.x, e.position.y, angle);
-        es.currentState.entities.push(arrow);
+        es.factories.arrow(e.position.x, e.position.y, angle);
       }
     }
   };

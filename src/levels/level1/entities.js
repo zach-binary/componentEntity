@@ -1,8 +1,8 @@
 define(function() {
 
-  function Level() {
+  function Entities() {
 
-    this.level = {
+    this.entities = {
       0: {
         name: 'background',
         renderable: {
@@ -56,9 +56,6 @@ define(function() {
           y: 0,
           speed: 1
         },
-        collision: {
-          bounds: new es.AABB(100, 100, 30, 40)
-        },
         stun: {
           delay: 0,
           recoverTime: 0
@@ -91,35 +88,19 @@ define(function() {
       },
 
       2: {
-        name: 'leftWall',
-        solid: true,
-        collision: {
-          bounds: new es.AABB(4, 45, 25, 478)
-        }
+        name: 'leftWall'
       },
 
       3: {
-        name: 'bottomWall',
-        solid: true,
-        collision: {
-          bounds: new es.AABB(31, 492, 450, 30)
-        }
+        name: 'bottomWall'
       },
 
       4: {
-        name: 'rightWall',
-        solid: true,
-        collision: {
-          bounds: new es.AABB(483, 45, 25, 478)
-        }
+        name: 'rightWall'
       },
 
       5: {
-        name: 'topWall',
-        solid: true,
-        collision: {
-          bounds: new es.AABB(31, 45, 450, 30)
-        }
+        name: 'topWall'
       },
 
       6: {
@@ -147,9 +128,6 @@ define(function() {
           frame: {},
           index: 0
         },
-        collision: {
-          bounds: new es.AABB(200, 200, 25, 25)
-        },
         damagePlayer: {
           damage: 4,
           bounceBack: 30, // pixels
@@ -160,6 +138,6 @@ define(function() {
     };
   }
 
-  return Level;
+  return Entities;
 
 });
